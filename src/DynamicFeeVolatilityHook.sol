@@ -20,7 +20,7 @@ import {BeforeSwapDeltaLibrary, BeforeSwapDelta} from "v4-core/src/types/BeforeS
 // constants
 import {PoolKey} from "v4-core/src/types/PoolKey.sol";
 
-contract MyDynamicFeeHook is BaseHook {
+contract DynamicFeeVolatilityHook is BaseHook {
     // Use CurrencyLibrary and BalanceDeltaLibrary
     // to add some helper functions over the Currency and BalanceDelta data types
     using CurrencyLibrary for Currency;

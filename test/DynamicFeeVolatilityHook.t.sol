@@ -30,13 +30,13 @@ import {PoolKey} from "v4-core/src/types/PoolKey.sol";
 import {VolatilityOracleMock} from "./mocks/VolatilityOracleMock.m.sol";
 
 // contract to test
-import {MyDynamicFeeHook} from "../src/MyDynamicFeeHook.sol";
+import {DynamicFeeVolatilityHook} from "../src/DynamicFeeVolatilityHook.sol";
 
 contract TestMyDynamicFeesHook is Test, Deployers {
     using PoolIdLibrary for PoolKey;
     using StateLibrary for IPoolManager;
 
-    MyDynamicFeeHook hook;
+    DynamicFeeVolatilityHook hook;
     VolatilityOracleMock volatilityOracle;
 
     function setUp() public {
@@ -54,8 +54,8 @@ contract TestMyDynamicFeesHook is Test, Deployers {
         volatilityOracle = new VolatilityOracleMock();
 
         // deploy our hook
-        deployCodeTo("MyDynamicFeeHook.sol", abi.encode(manager, volatilityOracle), hookAddress);
-        hook = MyDynamicFeeHook(hookAddress);
+        deployCodeTo("DynamicFeeVolatilityHook.sol", abi.encode(manager, volatilityOracle), hookAddress);
+        hook = DynamicFeeVolatilityHook(hookAddress);
 
         // Initialize a pool
         (key,) = initPool(
