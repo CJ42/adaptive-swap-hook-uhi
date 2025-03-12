@@ -1,7 +1,14 @@
-# v4-template
-### **A template for writing Uniswap v4 Hooks 🦄**
+# 🦄 Uniswap v4 Hookathon 🪝
 
-[`Use this Template`](https://github.com/uniswapfoundation/v4-template/generate)
+_WIP_
+
+> Based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
+
+<!-- 
+Items to write:
+- [] Show the hooks I override: `beforeSwap`, etc...
+- [] Explain the tests I wrote
+ -->
 
 1. The example hook [Counter.sol](src/Counter.sol) demonstrates the `beforeSwap()` and `afterSwap()` hooks
 2. The test template [Counter.t.sol](test/Counter.t.sol) preconfigures the v4 pool manager, test tokens, and test liquidity.
@@ -19,16 +26,6 @@ git merge template/main <BRANCH> --allow-unrelated-histories
 </details>
 
 ---
-
-### Check Forge Installation
-*Ensure that you have correctly installed Foundry (Forge) Stable. You can update Foundry by running:*
-
-```
-foundryup
-```
-
-> *v4-template* appears to be _incompatible_ with Foundry Nightly. See [foundry announcements](https://book.getfoundry.sh/announcements) to revert back to the stable build
-
 
 
 ## Set up
@@ -51,7 +48,7 @@ anvil
 # in a new terminal
 forge script script/Anvil.s.sol \
     --rpc-url http://localhost:8545 \
-    --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
+    --private-key 0x... \
     --broadcast
 ```
 
