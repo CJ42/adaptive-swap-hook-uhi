@@ -1,6 +1,5 @@
 # 🦄 Adaptive Swap - Uniswap v4 Hookathon 🪝
 
-> BY 
 > This repository is based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
 
 Adaptive Swap is a smart contract based on Uniswap v4 hooks that adjusts swap fees dynamically depending on the current market volatility. The goal is to protect liquidity provider from potential losses during rapid price movement and stabilise pools when markets are very volatile (reduce speculative behaviors from DeFi users that can lead to increased slippage for instance).
@@ -9,9 +8,9 @@ Volatility data is retrieved through external oracles. The hook will allow Liqui
 
 ## Next step
 
-- [] Implement Eigenlayer AVS basic PoC (with hardcoded volatility data into it, just to get barebone feature working)
-- [] Write functionality in AVS to retrieve data from external APIs to get market volatility
-- [] Connect AVS to Hook contract and implement basic functionality
+- [ ] Implement Eigenlayer AVS basic PoC (with hardcoded volatility data into it, just to get barebone feature working)
+- [ ] Write functionality in AVS to retrieve data from external APIs to get market volatility
+- [ ] Connect AVS to Hook contract and implement basic functionality
 
 I have other ideas of next steps, like different features available in the AVS based on a "tier level" that a user subscribed to for instance.
 
@@ -36,11 +35,6 @@ Items to write:
 - [] Show the hooks I override: `beforeSwap`, etc...
 - [] Explain the tests I wrote
  -->
-
-1. The example hook [Counter.sol](src/Counter.sol) demonstrates the `beforeSwap()` and `afterSwap()` hooks
-2. The test template [Counter.t.sol](test/Counter.t.sol) preconfigures the v4 pool manager, test tokens, and test liquidity.
-
-
 
 ---
 
