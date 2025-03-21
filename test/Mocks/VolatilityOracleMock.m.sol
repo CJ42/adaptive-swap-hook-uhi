@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-import {IVolatilityOracle} from "../../src/IVolatilityOracle.sol";
+import {IVolatilityOracle} from "../../src/interfaces/IVolatilityOracle.sol";
 
 contract VolatilityOracleMock is IVolatilityOracle {
     uint256 private _volatility;

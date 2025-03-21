@@ -5,7 +5,7 @@ import {console} from "forge-std/console.sol";
 
 // interfaces
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
-import {IVolatilityOracle} from "./IVolatilityOracle.sol";
+import {IVolatilityOracle} from "./interfaces/IVolatilityOracle.sol";
 
 // modules
 import {BaseHook} from "uniswap-hooks/src/base/BaseHook.sol";

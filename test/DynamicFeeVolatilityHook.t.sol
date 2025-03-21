@@ -20,7 +20,7 @@ import {Currency, CurrencyLibrary} from "v4-core/src/types/Currency.sol";
 import {PoolId, PoolIdLibrary} from "v4-core/src/types/PoolId.sol";
 
 // interfaces
-import {IVolatilityOracle} from "../src/IVolatilityOracle.sol";
+import {IVolatilityOracle} from "../src/interfaces/IVolatilityOracle.sol";
 import {IPoolManager} from "v4-core/src/interfaces/IPoolManager.sol";
 
 // constants
