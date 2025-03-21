@@ -1,8 +1,35 @@
-# 🦄 Uniswap v4 Hookathon 🪝
+# 🦄 Adaptive Swap - Uniswap v4 Hookathon 🪝
 
-_WIP_
+> BY 
+> This repository is based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
 
-> Based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
+Adaptive Swap is a smart contract based on Uniswap v4 hooks that adjusts swap fees dynamically depending on the current market volatility. The goal is to protect liquidity provider from potential losses during rapid price movement and stabilise pools when markets are very volatile (reduce speculative behaviors from DeFi users that can lead to increased slippage for instance).
+
+Volatility data is retrieved through external oracles. The hook will allow Liquidity Providers to pick which adjustment model they prefer (short, medium or long term volatility).
+
+## Next step
+
+- [] Implement Eigenlayer AVS basic PoC (with hardcoded volatility data into it, just to get barebone feature working)
+- [] Write functionality in AVS to retrieve data from external APIs to get market volatility
+- [] Connect AVS to Hook contract and implement basic functionality
+
+I have other ideas of next steps, like different features available in the AVS based on a "tier level" that a user subscribed to for instance.
+
+### Formula for weighted average volatility
+
+The example from the docs of Uniswap V4 implement dynamic fee adjustments automatically at the time of the swap. 
+
+Adaptive swap implementation not only implements dynamic fee adjustment before the swap (inside `_beforeSwap`), it also uses a volatility-based fee system using a **weighted average of volatility**. 
+
+Instead of reacting to short-term price spikes (which can make swap fee rise considerably at on these short time periods), it calculates a weighted average of volatility over 3 different time frame (24 hours, 7 days and 30 days). This reduces drastic fee fluctuations and protects liquidity providers from short-lived volatility.
+
+Below is the formula used to calculate the **weighted average of volatility based on time**. It assigns different weights to volatility measurements over various time frames: 
+
+![Math Formula for weighted average volatility](./images/weighted-volatility-formula.png)
+
+> **Note:** this method gives more emphasis to _short-term volatility_ but still considers longer-term trends to smooth out the volatility measure. 
+> The weights could be adjusted according to how sensitive you want the fee system to be to different time frames. For instance one could put more weight on the 30 days time frame to make the fee more sensitive to the long term volatility (_e.g: 50 % instead of 20% in the current implementation_).
+
 
 <!-- 
 Items to write:
@@ -13,17 +40,7 @@ Items to write:
 1. The example hook [Counter.sol](src/Counter.sol) demonstrates the `beforeSwap()` and `afterSwap()` hooks
 2. The test template [Counter.t.sol](test/Counter.t.sol) preconfigures the v4 pool manager, test tokens, and test liquidity.
 
-<details>
-<summary>Updating to v4-template:latest</summary>
 
-This template is actively maintained -- you can update the v4 dependencies, scripts, and helpers: 
-```bash
-git remote add template https://github.com/uniswapfoundation/v4-template
-git fetch template
-git merge template/main <BRANCH> --allow-unrelated-histories
-```
-
-</details>
 
 ---
 
@@ -36,6 +53,18 @@ git merge template/main <BRANCH> --allow-unrelated-histories
 forge install
 forge test
 ```
+
+<details>
+<summary>Updating to v4-template:latest</summary>
+
+This template is actively maintained -- you can update the v4 dependencies, scripts, and helpers: 
+```bash
+git remote add template https://github.com/uniswapfoundation/v4-template
+git fetch template
+git merge template/main <BRANCH> --allow-unrelated-histories
+```
+
+</details>
 
 ### Local Development (Anvil)
 
