@@ -8,7 +8,7 @@ Volatility data is retrieved through external oracles. The hook will allow Liqui
 
 ## Next step
 
-- [ ] Implement Eigenlayer AVS basic PoC (with hardcoded volatility data into it, just to get barebone feature working)
+- [x] Implement Eigenlayer AVS basic PoC (with hardcoded volatility data into it, just to get barebone feature working)
 - [ ] Write functionality in AVS to retrieve data from external APIs to get market volatility
 - [ ] Connect AVS to Hook contract and implement basic functionality
 
