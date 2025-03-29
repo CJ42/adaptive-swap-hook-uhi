@@ -4,7 +4,10 @@ out = "out"
 libs = ["lib"]
 ffi = true
 fs_permissions = [{ access = "read-write", path = ".forge-snapshots/" }]
-solc_version = "0.8.26"
+
+# Necessary as Eigenlayer contracts use solc =0.8.27 while Uniswap use solc =0.8.26
+# solc_version = "0.8.26"
+auto_detect_solc = true
 evm_version = "cancun"
 via_ir = true
 
