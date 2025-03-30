@@ -47,7 +47,8 @@ contract TestAdaptiveSwapHookAnvil is Test, Deployers {
         address hookAddress = address(uint160(Hooks.AFTER_INITIALIZE_FLAG | Hooks.BEFORE_SWAP_FLAG));
 
         // deploy our mock volatity oracle
-        volatilityOracle = IVolatilityDataOracle(0x36C02dA8a0983159322a80FFE9F24b1acfF8B570);
+        // TODO: to be replaced every time you re-deploy the oracle
+        volatilityOracle = IVolatilityDataOracle(0x4Bd915C3e39cfF4eac842255965E79061c38cACD);
 
         // deploy our hook
         deployCodeTo("AdaptiveSwapHook.sol", abi.encode(manager, volatilityOracle), hookAddress);

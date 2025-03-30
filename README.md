@@ -1,6 +1,7 @@
 # 🦄 Adaptive Swap - Uniswap v4 Hookathon 🪝
 
 > This repository is based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
+> [Video presentation](https://www.loom.com/share/4f95779cad3b4871a3e631428ca6c686)
 
 ![Adaptive Swap logo](./images/adaptive-swap-hook-logo.png)
 
