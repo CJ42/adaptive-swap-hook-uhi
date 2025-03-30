@@ -17,7 +17,7 @@ contract Config {
 
     /// @dev Hook AdaptiveSwap Hook contract address
     /// @notice this is the address of the hook contract that will be linked to the pool
-    IHooks constant hookContract = IHooks(address(0x0));
+    IHooks constant hookContract = IHooks(address(0xD3DCA79F081a43Cb7f8a932066122beC3C5c1080));
 
     /// @dev Volatility data oracle as an Eigenlayer Service Manager
     /// @notice this is the address of the oracle that will be used to retrieve the volatility data

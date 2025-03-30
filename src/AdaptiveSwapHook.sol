@@ -36,7 +36,7 @@ contract AdaptiveSwapHook is BaseHook {
 
     /// Volatility thresholds (in bps, 1 bps = 0.01%)
     /// @dev The volatility is represented in bips (1/10000), so 1% = 100 bips
-    uint256 public constant HIGH_VOLATILITY_TRIGGER = 250; // 2.5% weighted average
+    uint256 public constant HIGH_VOLATILITY_TRIGGER = 125; // 1.25% weighted average
     uint256 public constant LOW_VOLATILITY_TRIGGER = 75; // 0.75% weighted average
 
     /// LP fee tiers based on the volatility
@@ -81,8 +81,7 @@ contract AdaptiveSwapHook is BaseHook {
         override
         returns (bytes4)
     {
-        uint24 initialFee = getSwapFeeBasedOnWeightedVolatility();
-        poolManager.updateDynamicLPFee(key, initialFee);
+        poolManager.updateDynamicLPFee(key, REGULAR_VOLATILITY_FEE);
         return this.afterInitialize.selector;
     }
 
@@ -102,18 +101,24 @@ contract AdaptiveSwapHook is BaseHook {
         return (this.beforeSwap.selector, BeforeSwapDeltaLibrary.ZERO_DELTA, overridenLpFee);
     }
 
-    /// @dev
+    /// @dev Get the swap fee to be adjusted based on the price volatility of the asset
     function getSwapFeeBasedOnWeightedVolatility() public view returns (uint24) {
         // get volatility data
         uint256 currentVolatility = uint256(VOLATILITY_ORACLE.getLatestVolatilityData());
+        console.log(unicode"🔍 Weighted average volatility retrieved: %s", currentVolatility);
 
         if (currentVolatility >= HIGH_VOLATILITY_TRIGGER) {
+            console.log(unicode"📈 High volatility detected! Fee adjusted to: %s bps", HIGH_VOLATILITY_FEE);
             return HIGH_VOLATILITY_FEE;
         }
 
         if (currentVolatility <= LOW_VOLATILITY_TRIGGER) {
+            console.log(unicode"📉 Low volatility detected! Fee adjusted to: %s bps", LOW_VOLATILITY_FEE);
             return LOW_VOLATILITY_FEE;
         }
+
+        // Regular volatility
+        console.log(unicode"🧘‍♂️ Regular volatility fee applied: %s bps", REGULAR_VOLATILITY_FEE);
         return REGULAR_VOLATILITY_FEE;
     }
 }

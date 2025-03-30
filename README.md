@@ -8,15 +8,8 @@ Adaptive Swap is a smart contract based on Uniswap v4 hooks that adjusts swap fe
 
 Volatility data is retrieved through external oracles. The hook will allow Liquidity Providers to pick which adjustment model they prefer (short, medium or long term volatility).
 
-## Next step
 
-- [x] Implement Eigenlayer AVS basic PoC (with hardcoded volatility data into it, just to get barebone feature working)
-- [ ] Write functionality in AVS to retrieve data from external APIs to get market volatility
-- [ ] Connect AVS to Hook contract and implement basic functionality
-
-I have other ideas of next steps, like different features available in the AVS based on a "tier level" that a user subscribed to for instance.
-
-### Formula for weighted average volatility
+## Formula for weighted average volatility
 
 The example from the docs of Uniswap V4 implement dynamic fee adjustments automatically at the time of the swap. 
 
@@ -47,11 +40,80 @@ Items to write:
 
 ```
 forge install
+forge build
 forge test
 ```
 
+## 🪝 Testing the hook
+
+### 🧪 With unit tests
+
+```
+forge test --match-path test/AdaptiveSwapVolatilityHook.t.sol
+```
+
+### ⛓️ With Fork testing of Anvil on Localhost
+
+> Make sure you are running anvil + deploy and run the AVS in the background using the instructions under the following GitHub repository: [Adaptive Swap AVS UHI](https://github.com/CJ42/adaptive-swap-avs-uhi)
+
+Other than writing unit tests (recommended!), you can now also test the hook on a local [anvil](https://book.getfoundry.sh/anvil/) chain.
+
+```
+source .env
+```
+
+```bash
+# start anvil, a local EVM chain
+anvil
+
+# in a new terminal
+forge test --fork-url http://localhost:8545 --match-path test/AdaptiveSwapVolatilityHookAnvil.t.sol -vv
+```
+
+<!-- TODO: make testing on Anvil work -->
+<!-- ### ⛓️‍💥 Locally on Anvil
+
+We will use the deployer addresses + private keys available with Anvil.
+
+```bash
+cp .env.example
+source .env
+```
+
+You can now perform the following steps:
+
+1. Deploy the `AdaptiveSwapHook` on Anvil chain
+
+```bash
+forge script script/01_DeployAdaptiveSwapHook.s.sol --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+```
+
+2. Create a pool and mint liquidity
+
+```bash
+forge script script/02_CreatePoolAndMintLiquidity.s.sol --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+```
+
+3. Add liquidity to the pool
+
+```bash
+forge script script/03_AddLiquidity.s.sol --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+```
+
+4. Finally perform a swap
+
+```bash
+forge script script/04_Swap.s.sol --rpc-url http://localhost:8545 --private-key $PRIVATE_KEY --broadcast
+```
+
+See [script/](script/) for hook deployment, pool creation, liquidity provision, and swapping. -->
+
+---
+
 <details>
-<summary>Updating to v4-template:latest</summary>
+<summary><h2>Troubleshooting</h2></summary>
+
+### Updating to v4-template:latest
 
 This template is actively maintained -- you can update the v4 dependencies, scripts, and helpers: 
 ```bash
@@ -59,32 +121,6 @@ git remote add template https://github.com/uniswapfoundation/v4-template
 git fetch template
 git merge template/main <BRANCH> --allow-unrelated-histories
 ```
-
-</details>
-
-### Local Development (Anvil)
-
-Other than writing unit tests (recommended!), you can only deploy & test hooks on [anvil](https://book.getfoundry.sh/anvil/)
-
-```bash
-# start anvil, a local EVM chain
-anvil
-
-# in a new terminal
-forge script script/Anvil.s.sol \
-    --rpc-url http://localhost:8545 \
-    --private-key 0x... \
-    --broadcast
-```
-
-See [script/](script/) for hook deployment, pool creation, liquidity provision, and swapping.
-
----
-
-<details>
-<summary><h2>Troubleshooting</h2></summary>
-
-
 
 ### *Permission Denied*
 
