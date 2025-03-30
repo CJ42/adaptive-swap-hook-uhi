@@ -2,11 +2,16 @@
 
 > This repository is based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
 
-![Adaptive Swap logo](./images/adaptive-swap-logo.png)
+![Adaptive Swap logo](./images/adaptive-swap-hook-logo.png)
 
 Adaptive Swap is a smart contract based on Uniswap v4 hooks that adjusts swap fees dynamically depending on the current market volatility. The goal is to protect liquidity provider from potential losses during rapid price movement and stabilise pools when markets are very volatile (reduce speculative behaviors from DeFi users that can lead to increased slippage for instance).
 
 Volatility data is retrieved through external oracles. The hook will allow Liquidity Providers to pick which adjustment model they prefer (short, medium or long term volatility).
+
+## Architecture
+
+
+![Adaptive Swap architecture](./images/architecture.png)
 
 
 ## Formula for weighted average volatility
