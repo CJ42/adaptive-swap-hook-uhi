@@ -1,13 +1,16 @@
-# 🦄 Adaptive Swap - Uniswap v4 Hookathon 🪝
+# 🦄 Adaptive Swap - Hook 🪝
 
-> This repository is based on [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
-> [Video presentation](https://www.loom.com/share/4f95779cad3b4871a3e631428ca6c686)
+> Built as Capstone project for the Uniswap v4 hook incubator (_"Hookathon"_ 🪝)
+
+> Based on the [Uniswap v4 template](https://github.com/uniswapfoundation/v4-template/generate)
+
+> [📹 Video presentation](https://www.loom.com/share/4f95779cad3b4871a3e631428ca6c686)
 
 ![Adaptive Swap logo](./images/adaptive-swap-hook-logo.png)
 
 Adaptive Swap is a smart contract based on Uniswap v4 hooks that adjusts swap fees dynamically depending on the current market volatility. The goal is to protect liquidity provider from potential losses during rapid price movement and stabilise pools when markets are very volatile (reduce speculative behaviors from DeFi users that can lead to increased slippage for instance).
 
-Volatility data is retrieved through external oracles. The hook will allow Liquidity Providers to pick which adjustment model they prefer (short, medium or long term volatility).
+Volatility data is retrieved through the [**Adaptive Swap Eigenlayer AVS**](https://github.com/CJ42/adaptive-swap-avs-uhi) that act as an oracle and retrieve data from external APIs submitted on-chain by registered AVS operators. The hook aims to allow Liquidity Providers (LPs) to optimise the fees they receive during volatile market conditions.
 
 ## Architecture
 
